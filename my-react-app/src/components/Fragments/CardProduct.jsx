@@ -35,7 +35,7 @@ const Footer = (props) => {
     return (
         <div className="flex items-center justify-between px-5 pb-5 ">
             <span className="text-3xl font-bold text-white">{price}</span>
-            <Button classname="bg-blue-700">Buy</Button>
+            <Button classname="bg-teal-500">Buy</Button>
         </div>
     );
 };
