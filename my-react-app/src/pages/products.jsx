@@ -2,6 +2,7 @@ import { Fragment, useEffect, useState } from "react";
 import CardProduct from "../components/Fragments/CardProduct";
 import Button from "../components/Elements/Button";
 import Counter from "../components/Fragments/Counter";
+import { useRef } from "react";
 // import Counter from "../components/Fragments/Counter";
 
 const products = [
@@ -55,13 +56,29 @@ const ProductsPage = () => {
 
 const handleAddToCart = (id) => {
     if(cart.find(item => item.id === id)) {
-        setCart(
-            cart.map(item => item.id === id ? {...item, qty: item.qty + 1 } : item)
-            )
+        setCart(cart.map(item => item.id === id ? {...item, qty: item.qty + 1 } : item))
         } else {
             setCart([...cart, { id, qty: 1}]);
         }
     };
+
+    // useRef
+    const cartRef = useRef(JSON.parse(localStorage.getItem("cart")) || []);
+
+    const handleAddToCartRef = (id) => {
+        cartRef.current = [...cartRef.current, { id, qty: 1 }];
+        localStorage.setItem("cart", JSON.stringify(cartRef.current));
+    };
+
+    const totalPriceRef = useRef(null);
+
+    useEffect(() => {
+        if (cart.length > 0) {
+            totalPriceRef.current.style.display = "table-row";
+        } else {
+            totalPriceRef.current.style.display = "none";
+        }
+    }, [cart]);
 
     return (
         <Fragment>
@@ -100,14 +117,14 @@ const handleAddToCart = (id) => {
                                 </tr>
                             )
                         })}
-                        <tr className="text-sm">
+                        <tr ref={totalPriceRef}>
                             <td colSpan={3}><b>Total Price</b></td>
                             <td><b>
                                 Rp{" "}{totalPrice.toLocaleString("id-ID", {
                                 styles: "currency",
                                 currency: "IDR",})}
                             </b></td>
-                        </tr>                    
+                        </tr>
                     </tbody>
                 </table>
             </div>
