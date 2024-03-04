@@ -13,7 +13,7 @@ const Header = (props) => {
     const { image } = props;
     return (
         <a href="#">
-            <img src={image} alt="product" className="p-8 rounded-t-lg" />
+            <img src={image} alt="product" className="p-8 rounded-t-lg h-60 w-full object-cover" />
         </a>
     );
 };
@@ -23,8 +23,8 @@ const Body = (props) => {
     return (
         <div className="px-5 pb-5 h-full">
             <a href="">
-                <h3 className="text-xl font-semibold tracking-tight text-white">{name}</h3>
-                <p className="text-xs text-white">{children}</p>
+                <h3 className="text-xl font-semibold tracking-tight text-white">{name.substring(0, 20)}...</h3>
+                <p className="text-xs text-white">{children.substring(0, 100)}</p>
             </a>
         </div>
     );
@@ -34,8 +34,8 @@ const Footer = (props) => {
     const { price, handleAddToCart, id } = props;
     return (
         <div className="flex items-center justify-between px-5 pb-5 ">
-            <span className="text-xl font-bold text-white">Rp {price.toLocaleString('id-ID', {styles: 'currency', currency: 'IDR'})}</span>
-            <Button classname="bg-teal-500 text-xs" onClick={() => handleAddToCart(id)}>Add to cart</Button>
+            <span className="text-xl font-bold text-white">$ {price.toLocaleString('id-ID', {styles: 'currency', currency: 'USD'})}</span>
+            <Button classname="bg-teal-500 text-base" onClick={() => handleAddToCart(id)}>Add to cart</Button>
         </div>
     );
 };
