@@ -67,53 +67,57 @@ const handleAddToCart = (id) => {
 
     return (
         <Fragment>
-        <div className="flex justify-end h-20 bg-teal-500 text-white items-center px-10">
-            {username}
-            <Button classname="ml-5 bg-black" onClick={handleLogout}>Log out!</Button>
+        <div className="fixed w-full">
+            <div className="flex justify-end h-20 bg-teal-500 text-white items-center px-10">
+                {username}
+                <Button classname="ml-5 bg-black" onClick={handleLogout}>Log out!</Button>
+            </div>
         </div>
         <div className="flex justify-center py-10">
-            <div className="w-4/6 flex flex-wrap">
+            <div className="w-4/6 flex flex-wrap mt-11">
                 {products.length > 0 && 
                 products.map((product) => (
                     <CardProduct key={product.id}>
-                        <CardProduct.Header image={product.image} />
+                        <CardProduct.Header image={product.image} id={product.id} />
                         <CardProduct.Body name={product.title}>{product.description}</CardProduct.Body>
                         <CardProduct.Footer price={product.price} id={product.id} handleAddToCart={handleAddToCart} />
                     </CardProduct>
                 ))}
             </div>
-            <div className="w-2/6">
-                <h1 className="text-3xl font-bold text-teal-500 ml-5 mb-2">Cart</h1>
-                <table className="text-left table-auto border-separate border-spacing-x-4">
-                    <thead>
-                        <th>Product</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Total</th>
-                    </thead>
-                    <tbody>
-                        {products.length > 0 && 
-                        cart.map((item) => {
-                            const product = products.find((product) => product.id === item.id);
-                            return (
-                                <tr key={item.id}>
-                                    <td>{product.title.substring(0, 10)}...</td>
-                                    <td>$ {product.price.toLocaleString('id-ID', {styles: 'currency', currency: 'USD'})}</td>
-                                    <td>{item.qty}</td>
-                                    <td>$ {(item.qty * product.price).toLocaleString('id-ID', {styles: 'currency', currency: 'USD'})}</td>
-                                </tr>
-                            )
-                        })}
-                        <tr ref={totalPriceRef}>
-                            <td colSpan={3}><b>Total Price</b></td>
-                            <td><b>
-                                ${" "}{totalPrice.toLocaleString("id-ID", {
-                                styles: "currency",
-                                currency: "USD",})}
-                            </b></td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div className="w-2/6 mt-12">
+                <div className="fixed">
+                    <h1 className="text-3xl font-bold text-teal-500 ml-5 mb-2">Cart</h1>
+                    <table className="text-left table-auto border-separate border-spacing-x-4">
+                        <thead>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                        </thead>
+                        <tbody>
+                            {products.length > 0 && 
+                            cart.map((item) => {
+                                const product = products.find((product) => product.id === item.id);
+                                return (
+                                    <tr key={item.id}>
+                                        <td>{product.title.substring(0, 10)}...</td>
+                                        <td>$ {product.price.toLocaleString('id-ID', {styles: 'currency', currency: 'USD'})}</td>
+                                        <td>{item.qty}</td>
+                                        <td>$ {(item.qty * product.price).toLocaleString('id-ID', {styles: 'currency', currency: 'USD'})}</td>
+                                    </tr>
+                                )
+                            })}
+                            <tr ref={totalPriceRef}>
+                                <td colSpan={3}><b>Total Price</b></td>
+                                <td><b>
+                                    ${" "}{totalPrice.toLocaleString("id-ID", {
+                                    styles: "currency",
+                                    currency: "USD",})}
+                                </b></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
         </Fragment>
