@@ -19,7 +19,7 @@ const ProductsPage = () => {
     return (
         <Fragment>
         <Navbar />
-        <div className="flex justify-center py-10">
+        <div className={`flex justify-center py-10 ${isDarkMode && "bg-slate-900"}`}>
             <div className="w-4/6 flex flex-wrap mt-11">
                 {products.length > 0 && 
                 products.map((product) => (
