@@ -16,7 +16,7 @@ import { TotalPriceProvider } from './context/TotalPriceContext.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <div>Hello World!</div>,
+    element: <a href="/login" className='flex justify-center min-h-screen items-center text-8xl'>--Masuk Toko--</a>,
     errorElement: <ErrorPage />,
   },
   {

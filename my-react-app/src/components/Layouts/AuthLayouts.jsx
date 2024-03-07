@@ -11,7 +11,7 @@ const AuthLayout = (props) => {
     return (
         <div className={`flex justify-center min-h-screen items-center ${isDarkMode && "bg-slate-900"}`}>
             <div className="w-full max-w-xs">
-                <button className={`absolute right-2 top-2 font-semibold bg-black p-2 text-white rounded ${isDarkMode && "bg-white text-black"}`}
+                <button className={`absolute right-2 top-2 font-semibold bg-black p-2 text-white rounded ${isDarkMode && "bg-white text-slate-950"}`}
                 onClick={() => setIsDarkMode(!isDarkMode)}
                 >{isDarkMode ? "Light" : "Dark"}</button>
                 <h1 className="font-bold text-5xl mb-2 text-blue-800">{title}</h1>
