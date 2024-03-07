@@ -1,12 +1,15 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useContext, useEffect, useState } from "react";
 import CardProduct from "../components/Fragments/CardProduct";
 import { getProducts } from "../services/product.services";
 import { useLogin } from "../Hooks/useLogin";
 import TableCart from "../components/Fragments/TableCart";
 import Navbar from "../components/Layouts/Navbar";
+import { DarkMode } from "../context/DarkMode";
 
 
 const ProductsPage = () => {
+    
+    const { isDarkMode } = useContext(DarkMode);
     const [products, setProducts] = useState([]);
     useLogin();
 
